@@ -16,14 +16,14 @@ class ExecuteScheduledNotify extends Command
 
     public function handle(): void
     {
-        $notifies = Notify::query()->get();
+        $notifies = Notify::query()->where('id', 2)->get();
         foreach ($notifies as $notify) {
             $chat_id = $notify->category->channel;
             if ($this->isScheduledToRun($notify->schedule)) {
                 $content = $this->getNextContent($notify);
                 $notify->type === NotifyType::PHOTO ?
-                    Telegram::sendPhoto(['chat_id' => $chat_id, 'photo' => $content->value['photo']]) :
-                    Telegram::sendMessage(['chat_id' => $chat_id, 'text' => $content->value['text']]);
+                    Telegram::sendPhoto(['chat_id' => $chat_id, 'photo' => $content->photoValue]) :
+                    Telegram::sendMessage(['chat_id' => $chat_id, 'text' => $content->textValue]);
             }
         }
     }
