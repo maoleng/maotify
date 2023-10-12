@@ -31,12 +31,12 @@ class ExecuteScheduledNotify extends Command
     private function getNextContent($notify)
     {
         $contents = $notify->contents;
-        if ($notify->content_id === null || $notify->content_id >= $contents->last()->id) {
+        if ($notify->current_content === null || $notify->current_content >= $contents->last()->id) {
             $next_id = $contents->first()->id;
         } else {
-            $next_id = $contents->where('id', '>', $notify->content_id)->first()->id ?? $contents->first()->id;
+            $next_id = $contents->where('id', '>', $notify->current_content)->first()->id ?? $contents->first()->id;
         }
-        $notify->update(['content_id' => $next_id]);
+        $notify->update(['current_content' => $next_id]);
 
         return $contents->find($next_id);
     }

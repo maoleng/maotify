@@ -12,7 +12,7 @@ class Notify extends Model
     public $timestamps = false;
 
     protected $fillable = [
-        'name', 'banner', 'type', 'schedule', 'category_id', 'content_id', 'count',
+        'name', 'banner', 'type', 'schedule', 'category_id', 'current_content', 'count',
     ];
 
     public function contents(): HasMany

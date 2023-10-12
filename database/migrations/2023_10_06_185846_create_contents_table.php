@@ -11,15 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('notifies', function (Blueprint $table) {
+        Schema::create('contents', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('banner');
-            $table->integer('type');
-            $table->string('schedule');
-            $table->foreignId('category_id')->constrained();
-            $table->bigInteger('count')->default(0);
-            $table->foreignId('current_content')->nullable();
+            $table->json('value');
+            $table->foreignId('notify_id')->constrained();
             $table->dateTime('created_at')->default(now());
         });
     }
@@ -29,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('notifies');
+        Schema::dropIfExists('contents');
     }
 };
