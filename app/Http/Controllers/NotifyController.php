@@ -45,7 +45,7 @@ class NotifyController extends Controller
             'category_id' => $data['category_id'],
         ]);
 
-        return back()->with('success', 'Create content successfully');
+        return back()->with('success', 'Create notify successfully');
     }
 
     public function update(Request $request, Notify $notify): RedirectResponse
@@ -65,7 +65,7 @@ class NotifyController extends Controller
 
         $notify->update($update_data);
 
-        return back()->with('success', 'Create content successfully');
+        return back()->with('success', 'Update notify successfully');
     }
 
     public function destroy(Notify $notify): RedirectResponse

@@ -11,7 +11,7 @@
                         <div class="form-group">
                             <select name="type" class="selectpicker form-control" data-style="py-0">
                                 @foreach(\App\Enums\NotifyType::asArray() as $name => $value)
-                                    <option value="{{ $value }}">{{ $name }}</option>
+                                    <option {{ (isset($notify) && $notify->type === $value) ? 'selected' : '' }} value="{{ $value }}">{{ $name }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -21,7 +21,7 @@
                         <div class="form-group">
                             <select name="category_id" class="selectpicker form-control" data-style="py-0">
                                 @foreach($categories as $category)
-                                    <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                    <option {{ (isset($notify) && $notify->category_id === $category->id) ? 'selected' : '' }} value="{{ $category->id }}">{{ $category->name }}</option>
                                 @endforeach
                             </select>
                         </div>
