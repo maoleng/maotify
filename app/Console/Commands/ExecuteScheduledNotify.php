@@ -16,7 +16,7 @@ class ExecuteScheduledNotify extends Command
 
     public function handle(): void
     {
-        $notifies = Notify::query()->where('id', 2)->get();
+        $notifies = Notify::query()->get();
         foreach ($notifies as $notify) {
             $chat_id = $notify->category->channel;
             if ($this->isScheduledToRun($notify->schedule)) {
